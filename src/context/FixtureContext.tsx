@@ -1,12 +1,11 @@
-import { createContext, useState, ReactNode } from "react";
-import Fixture from "../types/Fixture";
-import { v4 } from "uuid";
-import { loadStoreLayout } from "../utils/LoadLocal";
-
 /**
  * FixtureContext manages the complete lifecycle of store fixtures including
  * creation, positioning, styling, and interaction modes. Uses a 40px:1m scale factor.
  */
+
+import { createContext, useState, ReactNode } from "react";
+import Fixture from "../types/Fixture";
+import { v4 } from "uuid";
 
 /**
  * Comprehensive context interface for fixture management
@@ -45,12 +44,7 @@ export const FixtureContext = createContext<FixtureContextType | undefined>(
 
 export const FixtureProvider = ({ children }: { children: ReactNode }) => {
   // Scale factor: 40 pixels = 1 meter for real-world coordinate mapping
-  const SCALE = 40;
-  const [fixtures, setFixtures] = useState<Record<string, Fixture>>(() => {
-    const savedStoreLayout = loadStoreLayout();
-    console.log("Initial fixtures loaded:", savedStoreLayout);
-    return savedStoreLayout || {};
-  });
+  const SCALE = 40;  const [fixtures, setFixtures] = useState<Record<string, Fixture>>({});
 
   const [selectedFixtureId, setSelectedFixtureId] = useState<string | null>(
     null
